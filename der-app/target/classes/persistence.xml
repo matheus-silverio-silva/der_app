@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <!-- O nome "default" deve bater com Persistence.createEntityManagerFactory("default") nas suas classes -->
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+        <!-- Liste aqui todas as entidades anotadas com @Entity -->
+        <class>com.example.app.entity.Aluno</class>
+        <class>com.example.app.entity.Curso</class>
+        <class>com.example.app.entity.Matricula</class>
+        <!-- Se houver mais @Entity, inclua cada uma aqui -->
+
+        <properties>
+            <!-- Defina exatamente a mesma conexão que está no hibernate.cfg.xml -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/der_app"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="M!159753"/>
+
+            <!-- Use o mesmo dialect do hibernate.cfg.xml -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+
+            <!-- Para criar/atualizar o schema igual ao hbm2ddl.auto=update -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- Para suprimir o SQL no console, igual a <property name="show_sql" value="false" /> -->
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.use_sql_comments" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
